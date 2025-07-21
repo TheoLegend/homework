@@ -1,0 +1,74 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Little Bank</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 400px;
+      margin: 2rem auto;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .balance {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    button {
+      width: 48%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-right: 2%;
+    }
+    button:last-child {
+      margin-right: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mini Bank</h1>
+  <div class="balance">Balance: $<span id="balance">0</span></div>
+  <input type="number" id="amount" placeholder="Enter amount" />
+  <div>
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="withdraw()">Withdraw</button>
+  </div>
+
+  <script>
+    let balance = 0;
+
+    function updateDisplay() {
+      document.getElementById('balance').textContent = balance;
+    }
+
+    function deposit() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      if (!isNaN(amount) && amount > 0) {
+        balance += amount;
+        updateDisplay();
+      }
+    }
+
+    function withdraw() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      if (!isNaN(amount) && amount > 0 && amount <= balance) {
+        balance -= amount;
+        updateDisplay();
+      }
+    }
+  </script>
+</body>
+</html>
